@@ -1,0 +1,131 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+#main{
+  height: 100vh;
+  background:#5cdb95;
+}
+.head{
+  position: absolute;
+  top: 20%;
+  left:30%;
+  width:45%;
+  align-items:center;
+  text-align: center;
+}
+.head-h1{
+  color: #05386b;
+  text-shadow: 5px 1px 20px white;
+  font-size: 6rem;
+  font-family: 'Chelsea Market', cursive;
+}
+.head-h3{
+  color: white;
+  font-size: 1.5rem;
+  text-shadow: 2px 1px 2px black;
+  font-family: 'Josefin Sans', sans-serif;
+}
+.btn{
+  font-size: 1.8rem;
+  color: white;
+  background: #05386b;
+  font-family: 'Pacifico', cursive;
+  padding: 0.5% 4%;
+  border: 0 solid white;
+  border-radius: 15px;
+  margin-top:10%;
+}
+.ass{
+  position: absolute;
+  height: 300px;
+  left:0%;
+  margin: 0;
+}
+.ani{
+  height:300px;
+}
+.slide-left{
+  animation: chs 2s;
+  width :50%;
+  display: inline-block;
+}
+.head-slide{
+  animation: ch 0.8s linear;
+  left:10%;
+}
+.log-div{
+  position: absolute;
+  top:20%;
+  margin-left:100px;
+  border: 3px  #05386b solid;
+  width: 30%;
+  visibility: hidden;
+  opacity: 0;
+}
+.reg-div{
+  position: absolute;
+  top:20%;
+  margin-left:600px;
+  border: 3px  #05386b solid;
+  width: 30%;
+  transition:  opacity .2s, visibility .2s, margin-left .8s 2s;
+  transition-delay: .02s;
+  visibility: hidden;
+  opacity: 0;
+}
+.reg-appear{
+  transition: opacity .2s ,margin-left .5s;
+  transition-delay: .01s;
+  opacity: 1;
+  visibility: visible;
+  margin-left:850px;
+}
+.log-appear{
+  transition: opacity 2s ;
+  opacity: 1;
+  visibility: visible;
+}
+.log-head{
+  font-size: 3rem;
+  color: #05386b;
+  font-family: 'Chelsea Market', cursive;
+  padding: 5%;
+}
+.log-form{
+  font-size: 1.4rem;
+  font-family: 'Lemonada', cursive;
+  padding: 5%;
+}
+.reg-form{
+  font-size: 1.4rem;
+  font-family: 'Lemonada', cursive;
+  padding: 5%;
+}
+input{
+  font-size: 1.2rem;
+  margin-left: 20px;
+}
+.log-appear{
+  transition: margin-right .5s;
+  display: inline-block;
+  margin-right:100px;
+}
+.signin{
+  font-size: 1.1rem;
+  margin: 20px 0;
+  padding: 1% 5%;
+  background:  #05386b;
+  color: white;
+  border-radius: 10px;
+  font-family: 'Lemonada', cursive;
+}
+@keyframes ch {
+  from{left:35%;}
+  to{left:10%;}
+}
+
+@keyframes chs {
+  from{  width: 100%;}
+  to{width:50%;}
+}
