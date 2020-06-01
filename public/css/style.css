@@ -2,6 +2,11 @@
   margin: 0;
   padding: 0;
 }
+body{
+  background-image: url("/img/bg.png");
+  background-repeat: no-repeat;
+  background-position: 110vh 70vh;
+}
 #main{
   height: 100vh;
   background:#5cdb95;
