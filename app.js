@@ -10,18 +10,18 @@ const app =express();
 app.set("view engine", "ejs");
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended:true}));
-app.use(session({
+/*app.use(session({
   secret:"dark secret.",
   resave:false,
   saveUninitialized:false
-}));
-app.use(passport.initialize());
-app.use(passport.session());
+}));*/
+//app.use(passport.initialize());
+//app.use(passport.session());
 
 //mongoose.connect("mongodb+srv://admin:test2ter0-6ef3z.mongodb.net/userDB",{useUnifiedTopology: true,useNewUrlParser: true});
-mongoose.set("useCreateIndex",true);
+//mongoose.set("useCreateIndex",true);
 
-const userSchema= new mongoose.Schema({
+/*const userSchema= new mongoose.Schema({
   username:String,
   password:String,
   arr:[]
@@ -37,16 +37,21 @@ passport.deserializeUser(function(id, done) {
     done(err, user);
   });
 });
-
-app.listen(3000,function(){
-  console.log("server started");
+*/
+let port=process.env.PORT;
+if( port == null || port=="" ){
+  port=3000;
+}
+app.listen(port,function(){
+  console.log("Server is started");
 });
+
 
 app.get("/",function(req,res){
   res.sendFile(__dirname+'/index.html');
 });
 
-app.post('/register',function(req,res){
+/*app.post('/register',function(req,res){
   User.register({username:req.body.username},req.body.password,function(err,user){
     if(err){
       console.log(err);
@@ -81,3 +86,4 @@ app.get('/dash',function(req,res){
    //res.redirect("/");
   // }
 });
+*/
