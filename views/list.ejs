@@ -25,7 +25,7 @@
             <ul class="list-unstyled components">
                 <p style="text-align: center;font-weight:bold">Fields</p>
                 <li class="" id ="cfferw">
-                    <a href="#homeSubmenu"  aria-expanded="false" class="dropdown-toggle">Home</a>
+                    <a href="#" name="erw" id="hom" >Home</a>
                 </li>
 
              <% person.arr.forEach(function(object){  %>
@@ -111,7 +111,7 @@
                 </tr>
                 <%object.task.forEach(function(tak){  %>
                     <tr class= " trr op<%=object.title%>"> <%=tak.val%>">
-              <form class= "item"  action="/delete" method="post">
+              <form id='asd' class= "item"  action="/delete" method="post">
                 <input type="hidden" name="task" value="<%=tak.val%>">
                   <input type="hidden" name="id" value="<%=person.id%>">
                   <input type="hidden" name="taskName" value="<%=object.title%>">
@@ -120,7 +120,7 @@
                    <td class="yop"><span class="btn btn-danger" style="border-radius:15px; margin-right:10px;"><%=tak.due%></span></td>
                    <td class="yop"><span class="btn btn-warning"style="border-radius:15px; font-size:10px; ">pending</span>
                    <span class="btn btn-info"style="border-radius:15px; font-size:10px;display:none;">processing...</span></td>
-                    <td class="yop"><button type="submit" class="btn-success"name="button" style="border-radius:15px; font-size:15px;display:none">Complete</button></td>
+                    <td class="yop"><button type="button" onclick="play()" class="btn-success"name="button" style="border-radius:15px; font-size:15px;display:none">Complete</button></td>
 
               </form>
                </tr>
@@ -165,6 +165,28 @@
              </div>
           </div>
 
+        <div id="suc" style="position: absolute; top:40vh; right:0;display:none">
+          <div class="card" style="width:12rem; height:12rem">
+          <div class="card-body">
+            <img class="card-img-top" style="height:60px;width: 100px;;"src="/img/good.png" alt="Card image cap">
+            <h5 class="card-title" style="font-size:1rem; font-weight:600;color:black; margin:0;padding:3px;">Good Job</h5>
+            <p class="card-text" style="font-size:0.7rem; font-weight: 400; margin:0; padding: 3px;">You have successfully completed the task.You can check the details in archive</p>
+          </div>
+        </div>
+        </div>
+
+          <div class="task-div" style="margin-left:100px;" id="erw">
+            <div class="box" id="heading">
+                <h1>Welcome</h1>
+            </div>
+            <div class="box" style="display:flex;">
+              <img src="/img/im.png" style="height:400px; display:inline-block" alt="">
+             <p style="display:inline-block">Hello, I am Lana ,your To do manager. You can tell me various fields and task to me . I will keep a record of it.
+                 I will make sure you Complete your task with in time.
+              </p>
+            </div>
+         </div>
+
 
 
         </div>
@@ -188,8 +210,7 @@
                 $(this).toggleClass('active');
             });
         });
-        document.getElementById('da').setAttribute("min",  new Date().toISOString().split("T")[0]);
-
+      
     </script>
 
 

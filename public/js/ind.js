@@ -11,6 +11,7 @@ $(document).ready(function () {
     });
 
 });
+document.getElementById('da').setAttribute("min",  new Date().toISOString().split("T")[0]);
 
 for (var i = 0; i < item.length; i++) {
   item[i].addEventListener("click", function(e){
@@ -20,7 +21,8 @@ for (var i = 0; i < item.length; i++) {
           document.getElementById("cff"+e.target.innerText).classList.remove("active");
       }
     }
-      document.getElementById("archives").style.display="none";
+     document.getElementById('erw').style.display='none';
+    document.getElementById("archives").style.display="none";
     document.getElementById(e.target.innerText).style.display="block";
     document.getElementById("cff"+e.target.innerText).classList.add("active");
  });
@@ -44,7 +46,15 @@ for (var k = 0; k < trarr.length; k++) {
     }
   });
 };
+//'none';
+function play(){
+   document.getElementById("suc").style.display='inline-block';
+   setTimeout(function(){
+ 	  document.getElementById("suc").style.display='none';
+  },20000);
 
+    $('#asd').submit();
+};
 document.getElementById("arc").addEventListener('click',function(e){
   for (var j = 0; j < item.length; j++) {
     document.getElementById(item[j].innerText).style.display="none";
@@ -53,6 +63,17 @@ document.getElementById("arc").addEventListener('click',function(e){
     }
   }
   document.getElementById("cfferw").classList.remove("active");
+  e.target.classList.add("active");
+    document.getElementById(e.target.getAttribute('name')).style.display="inline-block";
+});
+document.getElementById("hom").addEventListener('click',function(e){
+  for (var j = 0; j < item.length; j++) {
+    document.getElementById(item[j].innerText).style.display="none";
+    if (document.getElementById("cff"+item[j].innerText).classList.contains('active')) {
+        document.getElementById("cff"+item[j].innerText).classList.remove("active");
+    }
+  }
+  document.getElementById("arc").classList.remove("active");
   e.target.classList.add("active");
     document.getElementById(e.target.getAttribute('name')).style.display="inline-block";
 });
