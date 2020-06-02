@@ -6,6 +6,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&family=Lemonada:wght@300&family=Pacifico&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.9/dist/sweetalert2.all.min.js"></script>
 </head>
 
 <body>
@@ -29,7 +31,7 @@
     </tr>
     <tr>
       <th><label for="pwd">Password</label></th>
-      <td><input type="password" name="pass" value=""  ></td>
+      <td><input type="password" name="password" value=""  ></td>
     </tr>
     <tr>
       <td><button type="submit" name="button" class='signin'>Sign in</button></td>
@@ -44,12 +46,17 @@
     <form class="reg-form" action="/register" method="post">
   <table>
     <tr>
+      <th>  <label for="name">Name</label></th>
+      <td ><input type="text" name="name" value=""></td>
+    </tr>
+
+    <tr>
       <th>  <label for="username">Username</label></th>
       <td ><input type="text" name="username" value=""></td>
     </tr>
     <tr>
       <th><label for="pwd">Password</label></th>
-      <td><input type="password" name="pass" value=""  ></td>
+      <td><input type="password" name="password" value=""  ></td>
     </tr>
     <tr>
       <th><button type="submit" name="button" class='signin'>Sign Up</button></th>
@@ -59,6 +66,7 @@
     </form>
 
   </div>
+  <script src="/socket.io/socket.io.js" ></script>
 
   <script src="/js/index.js" charset="utf-8"></script>
 </body>

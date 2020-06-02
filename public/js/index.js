@@ -1,3 +1,4 @@
+var socket = io.connect();
 
 var section = document.getElementById("main");
 var btn = section.getElementsByClassName("btn")[0];
