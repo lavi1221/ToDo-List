@@ -11,6 +11,9 @@ body{
   height: 100vh;
   background:#5cdb95;
 }
+button:focus{
+  outline: none;
+}
 .head{
   position: absolute;
   top: 20%;

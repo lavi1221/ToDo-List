@@ -12,6 +12,11 @@ h1 {
     background: white;
     border-radius: 5px;
     box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
+
+  }
+  .tyy{
+    max-height: 700px;
+    overflow-y: scroll;
   }
 
   #heading {
@@ -30,7 +35,10 @@ h1 {
   .item:last-child {
     border-bottom: 0;
   }
-
+button:focus{
+  outline: none;
+}
+b
   input:checked+p {
     text-decoration: line-through;
     text-decoration-color: #A683E3;
@@ -65,6 +73,7 @@ h1 {
     margin-top: 5px;
     border-width: 0;
     margin-bottom: 10px;
+    outline: none;
   }
 .eer{
   min-height: 20px;
@@ -76,6 +85,7 @@ h1 {
   font-size: 20px;
   padding-bottom: 6px;
   border-width: 0;
+  outline: none;
 }
 .addT{
     text-align: center;

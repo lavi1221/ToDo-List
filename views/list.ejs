@@ -96,12 +96,12 @@
               </div>
               <div class="form">
                   <form id ="filter<%=object.title%>" class="ieem">
-                    <input type="text" class="adT"  name="searchbar" value="" oninput="fund(<%=object.title%>)" placeholder="Type Task Name">
+                    <input type="text" class="adT"  name="searchbar" value="" oninput="fund(<%=object.title%>)" placeholder="Search">
                     <input type="hidden" name="taskName" value="<%=object.title%>">
                   </form>
              </div>
 
-              <div class="box">
+              <div class="box tyy">
                 <table>
                 <tr>
                    <th>Task Name</th>
@@ -145,7 +145,12 @@
              <div class="box" id="heading">
                  <h1>Archives</h1>
              </div>
-             <div class="box">
+             <div class="form">
+                 <form id ="searchA" class="ieem">
+                   <input type="text" class="adT" style="font-size:15px; height:50px;" name="searchbar" value="" oninput="fnd(this)" placeholder="Search">
+                 </form>
+            </div>
+             <div class="box tyy">
                <table>
                <tr>
                   <th>Title Name</th>
@@ -154,7 +159,7 @@
                 <th>Completion Date</th>
                </tr>
                 <% person.archive.forEach(function(ob){  %>
-            <tr class= "trr">
+            <tr class= "trr popo">
                   <td class="yop"><%=ob.title%></td>
                   <td class="yop"><%=ob.task%></span>
                     <td class="yop"><%=ob.due%></td>
@@ -210,7 +215,7 @@
                 $(this).toggleClass('active');
             });
         });
-      
+
     </script>
 
 

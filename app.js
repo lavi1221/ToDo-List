@@ -107,11 +107,7 @@ app.post('/addtask',function(req,res){
                   val:req.body.newItem,
                   due:req.body.due
                 }
-                console.log(temp.val+" "+temp.due);
                 tk[i].task.push(temp);
-                tk[i].task.forEach(function(t){
-                  console.log(t.val+" "+t.due);
-                });
                 foundUser.markModified("arr");
                 foundUser.save();
                 act = req.body.taskName;
@@ -123,7 +119,6 @@ app.post('/addtask',function(req,res){
    });
 });
 app.post("/delete",function(req,res){
-  console.log(req.body);
   User.findById(req.body.id,function(err,foundUser){
   if(err){
      console.log(err);

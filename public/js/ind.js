@@ -38,7 +38,6 @@ function fun(anc){
 var trarr =   document.getElementsByClassName("trr");
 for (var k = 0; k < trarr.length; k++) {
   trarr[k].addEventListener("click", function(e){
-    console.log(e.target.type);
     if(e.target.type == 'checkbox'){
       document.getElementsByClassName("btn-warning")[e.target.value].style.display ="none";
       document.getElementsByClassName("btn-info")[e.target.value].style.display ="inline-block";
@@ -46,12 +45,11 @@ for (var k = 0; k < trarr.length; k++) {
     }
   });
 };
-//'none';
 function play(){
    document.getElementById("suc").style.display='inline-block';
    setTimeout(function(){
  	  document.getElementById("suc").style.display='none';
-  },20000);
+  },80000);
 
     $('#asd').submit();
 };
@@ -62,6 +60,7 @@ document.getElementById("arc").addEventListener('click',function(e){
         document.getElementById("cff"+item[j].innerText).classList.remove("active");
     }
   }
+  document.getElementById('erw').style.display="none";
   document.getElementById("cfferw").classList.remove("active");
   e.target.classList.add("active");
     document.getElementById(e.target.getAttribute('name')).style.display="inline-block";
@@ -73,6 +72,7 @@ document.getElementById("hom").addEventListener('click',function(e){
         document.getElementById("cff"+item[j].innerText).classList.remove("active");
     }
   }
+  document.getElementById('archives').style.display="none";
   document.getElementById("arc").classList.remove("active");
   e.target.classList.add("active");
     document.getElementById(e.target.getAttribute('name')).style.display="inline-block";
@@ -86,11 +86,9 @@ function fund(dod){
   search = document.getElementById('filter'+rt.innerText).querySelectorAll('input')[0];
  var title = document.getElementById('filter'+rt.innerText).querySelectorAll('input')[1];
   list_div= document.querySelectorAll('.op'+rt.innerText);
- console.log(list_div);
   search.addEventListener("keyup",function(e){
    term = e.target.value.toLowerCase();
    Array.from(list_div).forEach(function(list){
-     console.log(list);
      title = list.innerText.split('2')[0].toLowerCase();
      if(title.indexOf(term)<0){
        list.style.display='none';
@@ -100,3 +98,16 @@ function fund(dod){
    });
   });
 };
+
+function fnd(opa){
+    search = opa.value.toLowerCase();
+     list_div=document.querySelectorAll('.popo');
+      Array.from(list_div).forEach(function(list){
+        var task = list.cells[1].innerText.toLowerCase();
+        if(task.indexOf(search)<0){
+          list.style.display='none';
+        }else{
+          list.style.display='';
+        }
+     });
+   }
