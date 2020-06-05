@@ -11,7 +11,8 @@ $(document).ready(function () {
     });
 
 });
-document.getElementById('da').setAttribute("min",  new Date().toISOString().split("T")[0]);
+if(document.getElementById('da')!== null)
+      document.getElementById('da').setAttribute("min",  new Date().toISOString().split("T")[0]);
 
 for (var i = 0; i < item.length; i++) {
   item[i].addEventListener("click", function(e){
