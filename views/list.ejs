@@ -82,6 +82,7 @@
                 </div>
             </nav>
             <% var i= 0;%>
+
              <% person.arr.forEach(function(object){  %>
             <div class="task-div" id="<%=object.title%>">
               <div class="box" id="heading">
@@ -111,20 +112,20 @@
                 </tr>
                 <%object.task.forEach(function(tak){  %>
                     <tr class= " trr op<%=object.title%>"> <%=tak.val%>">
-              <form id='asd' class= "item"  action="/delete" method="post">
-                <input type="hidden" name="task" value="<%=tak.val%>">
-                  <input type="hidden" name="id" value="<%=person.id%>">
-                  <input type="hidden" name="taskName" value="<%=object.title%>">
-                  <input type="hidden" name="duedate" value="<%=tak.due%>">
-                   <td><input type="checkbox" name="check" value="<%=i%>" ><p style="display:inline-block;"><%=tak.val%> </p></td>
-                   <td class="yop"><span class="btn btn-danger" style="border-radius:15px; margin-right:10px;"><%=tak.due%></span></td>
-                   <td class="yop"><span class="btn btn-warning"style="border-radius:15px; font-size:10px; ">pending</span>
-                   <span class="btn btn-info"style="border-radius:15px; font-size:10px;display:none;">processing...</span></td>
-                    <td class="yop"><button type="button" onclick="play()" class="btn-success"name="button" style="border-radius:15px; font-size:15px;display:none">Complete</button></td>
+                        <form id='asd' class= "item"  action="/delete" method="post">
+                          <input type="hidden" name="task" value="<%=tak.val%>">
+                            <input type="hidden" name="id" value="<%=person.id%>">
+                            <input type="hidden" name="taskName" value="<%=object.title%>">
+                            <input type="hidden" name="duedate" value="<%=tak.due%>">
+                             <td><input type="checkbox" name="check" value="<%=i%>" ><p style="display:inline-block;"><%=tak.val%> </p></td>
+                             <td class="yop"><span class="btn btn-danger" style="border-radius:15px; margin-right:10px;"><%=tak.due%></span></td>
+                             <td class="yop"><span class="btn btn-warning"style="border-radius:15px; font-size:10px; ">pending</span>
+                             <span class="btn btn-info"style="border-radius:15px; font-size:10px;display:none;">processing...</span></td>
+                              <td class="yop"><button type="button" onclick="play()" class="btn-success"name="button" style="border-radius:15px; font-size:15px;display:none">Complete</button></td>
 
-              </form>
-               </tr>
-              <% i++ ;})%>
+                        </form>
+                     </tr>
+                <% i++ ;})%>
            </table>
 
                   <form class="iem" action="/addtask" method="post">
@@ -141,13 +142,19 @@
            <%})%>
 
 
-           <div class="task-div" style="display:none;margin-left:300px" id="archives">
+           <div class="task-div" style="margin-left:270px;"  id="archives">
              <div class="box" id="heading">
                  <h1>Archives</h1>
              </div>
              <div class="form">
                  <form id ="searchA" class="ieem">
-                   <input type="text" class="adT" style="font-size:15px; height:50px;" name="searchbar" value="" oninput="fnd(this)" placeholder="Search">
+                   <input type="text" class="adT" style="font-size:15px; height:50px;" name="searchbar" value="" oninput="fnd(this)" placeholder="Search By ">
+                   <select class="form-control" name="" >
+                     <option value="0">Title</option>
+                     <option value="1">Task Name</option>
+                     <option value="2">Due Date</option>
+                     <option value="3">Completion</option>
+                   </select>
                  </form>
             </div>
              <div class="box tyy">
@@ -180,13 +187,13 @@
         </div>
         </div>
 
-          <div class="task-div" style="margin-left:100px;" id="erw">
+          <div class="task-div" style="margin-left:270px;"  id="erw">
             <div class="box" id="heading">
                 <h1>Welcome</h1>
             </div>
             <div class="box" style="display:flex;">
               <img src="/img/im.png" style="height:400px; display:inline-block" alt="">
-             <p style="display:inline-block">Hello, I am Lana ,your To do manager. You can tell me various fields and task to me . I will keep a record of it.
+             <p style="display:inline-block">Hello <%=person.name%>, I am Lana ,your To do manager. You can tell me various fields and task to me . I will keep a record of it.
                  I will make sure you Complete your task with in time.
               </p>
             </div>

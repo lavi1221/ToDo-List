@@ -23,6 +23,21 @@ h1 {
     background-color: #A683E3;
     text-align: center;
   }
+  ::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #A683E3;
+  border-radius: 15px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background:#5526a8;
+}
 
   .item {
     min-height: 70px;
@@ -38,8 +53,7 @@ h1 {
 button:focus{
   outline: none;
 }
-b
-  input:checked+p {
+input:checked+p {
     text-decoration: line-through;
     text-decoration-color: #A683E3;
   }
@@ -136,9 +150,12 @@ th{
   font-size: 20px;
   font-weight: 600;
   width: 180px;
-  color:black;
-  margin: 10px;
-  border-radius: 10px;
+  color:white;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index:1;
+  background:#5526a8;
 }
 .yop{
   text-align: center;

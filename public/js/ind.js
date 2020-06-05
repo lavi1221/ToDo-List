@@ -49,7 +49,7 @@ function play(){
    document.getElementById("suc").style.display='inline-block';
    setTimeout(function(){
  	  document.getElementById("suc").style.display='none';
-  },80000);
+  },120000);
 
     $('#asd').submit();
 };
@@ -103,7 +103,8 @@ function fnd(opa){
     search = opa.value.toLowerCase();
      list_div=document.querySelectorAll('.popo');
       Array.from(list_div).forEach(function(list){
-        var task = list.cells[1].innerText.toLowerCase();
+        var task = list.cells[document.querySelector('select').value].innerText.toLowerCase();
+        console.log(document.querySelector('select').value);
         if(task.indexOf(search)<0){
           list.style.display='none';
         }else{
