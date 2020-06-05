@@ -36,23 +36,23 @@ function fun(anc){
      document.getElementsByClassName("btn-warning")[0].style.display ="inline-block";
   }
 }
-var trarr =   document.getElementsByClassName("trr");
-for (var k = 0; k < trarr.length; k++) {
-  trarr[k].addEventListener("click", function(e){
-    if(e.target.type == 'checkbox'){
-      document.getElementsByClassName("btn-warning")[e.target.value].style.display ="none";
-      document.getElementsByClassName("btn-info")[e.target.value].style.display ="inline-block";
-      document.getElementsByClassName("btn-success")[e.target.value].style.display ="inline-block";
-    }
-  });
-};
-function play(){
+function pla(data){
+  var tot ={
+    personid:document.getElementById(data.name).elements[1].value,
+    titlename:document.getElementById(data.name).elements[2].value,
+    task:document.getElementById(data.name).elements[0].value
+  };
+  socket.emit('check',tot);
+  setTimeout(function(){
+    window.location.href = '/dash';
+ },900);
+}
+function play(re){
    document.getElementById("suc").style.display='inline-block';
    setTimeout(function(){
  	  document.getElementById("suc").style.display='none';
-  },120000);
-
-    $('#asd').submit();
+  },900);
+     document.getElementById(re.name).submit();
 };
 document.getElementById("arc").addEventListener('click',function(e){
   for (var j = 0; j < item.length; j++) {

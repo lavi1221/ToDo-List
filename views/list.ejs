@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="/css/form.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.26.9/dist/sweetalert2.all.min.js"></script>
 </head>
 
@@ -111,17 +110,25 @@
                   <th>Action</th>
                 </tr>
                 <%object.task.forEach(function(tak){  %>
-                    <tr class= " trr op<%=object.title%>"> <%=tak.val%>">
-                        <form id='asd' class= "item"  action="/delete" method="post">
+                    <tr class= " trr op<%=object.title%>">
+                        <form id='<%=object.title%><%=tak.val%>' class= "item"  action="/delete" method="post">
                           <input type="hidden" name="task" value="<%=tak.val%>">
                             <input type="hidden" name="id" value="<%=person.id%>">
                             <input type="hidden" name="taskName" value="<%=object.title%>">
                             <input type="hidden" name="duedate" value="<%=tak.due%>">
-                             <td><input type="checkbox" name="check" value="<%=i%>" ><p style="display:inline-block;"><%=tak.val%> </p></td>
+                             <td><input type="checkbox" name="<%=object.title%><%=tak.val%>" value="<%=i%>" onchange="pla(this)"><p style="display:inline-block;"><%=tak.val%> </p></td>
                              <td class="yop"><span class="btn btn-danger" style="border-radius:15px; margin-right:10px;"><%=tak.due%></span></td>
-                             <td class="yop"><span class="btn btn-warning"style="border-radius:15px; font-size:10px; ">pending</span>
-                             <span class="btn btn-info"style="border-radius:15px; font-size:10px;display:none;">processing...</span></td>
-                              <td class="yop"><button type="button" onclick="play()" class="btn-success"name="button" style="border-radius:15px; font-size:15px;display:none">Complete</button></td>
+                             <td class="yop">
+                               <% if(tak.status == 0){%>
+                               <span class="btn btn-warning"style="border-radius:15px; font-size:10px; ">pending</span>
+                             <%}else{%>
+                             <span class="btn btn-info"style="border-radius:15px; font-size:10px;">processing...</span><%}%>
+                           </td>
+                            <td class="yop">
+                               <% if(tak.status == 1){%>
+                              <button type="button" onclick="play(<%=object.title%><%=tak.val%>)" class="btn-success"name="button" style="border-radius:15px; font-size:15px;">Complete</button>
+                              <%}%>
+                            </td>
 
                         </form>
                      </tr>

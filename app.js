@@ -104,8 +104,9 @@ app.post('/addtask',function(req,res){
         for (var i = 0; i < tk.length; i++){
             if (tk[i].title == req.body.taskName){
                 var temp ={
-                  val:req.body.newItem,
-                  due:req.body.due
+                  val:req.body.newItem.trim(),
+                  due:req.body.due,
+                  status:0
                 }
                 tk[i].task.push(temp);
                 foundUser.markModified("arr");
@@ -124,7 +125,7 @@ app.post("/delete",function(req,res){
      console.log(err);
     }else{
       if(foundUser){
-        var tk=foundUser.arr;
+        var tk = foundUser.arr;
         for (var i = 0; i < tk.length; i++){
             if (tk[i].title == req.body.taskName){
                 var tt = tk[i].task;
@@ -133,6 +134,7 @@ app.post("/delete",function(req,res){
                     break;
                   }
                 }
+                console.log(req.body.task);
                 tk[i].task.splice(k,1);
                 var day =  new Date().toISOString().split("T")[0];
                 var trer = {
@@ -182,6 +184,33 @@ app.post("/clear",function(req,res){
 
 io.on("connection",function(socket){
   io.emit('active',act);
+
+  socket.on('check',function(data){
+    User.findById(data.personid,function(err,foundUser){
+    if(err){
+       console.log(err);
+      }else{
+        if(foundUser){
+          var tk = foundUser.arr;
+          for (var i = 0; i < tk.length; i++){
+              if (tk[i].title == data.titlename){
+                  var tt = tk[i].task;
+                  console.log(tk[i].title);
+                  for(var k =0;k<tt.length;k++){
+                    if(tt[k].val == data.task){
+                      console.log(tt[k].val);
+                      break;
+                    }
+                  }
+                  tk[i].task[k].status=1;
+                  foundUser.markModified("arr");
+                  foundUser.save();
+              }
+          }
+        }
+      }
+     });
+  });
  });
 app.get('/dash',function(req,res){
    if(req.isAuthenticated()){
