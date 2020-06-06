@@ -18,7 +18,13 @@ h1 {
     max-height: 700px;
     overflow-y: scroll;
   }
-
+.das.active{
+  background: #5526a8;
+}
+.das{
+  background:#7386D5;
+  color:white;
+}
   #heading {
     background-color: #A683E3;
     text-align: center;
@@ -181,11 +187,20 @@ th{
 .adT{
   text-align: center;
   border: none;
-  background: white;
   font-size: 15px;
   font-weight: 400;
   padding: 2%;
   width: 700px;
-  margin: 0;
+  margin: auto;
   height: 20px;
+  display: block;
+}
+.tyts{
+  display: block;
+  width: 700px;
+  text-align: center;
+  border: none;
+  margin: auto;
+  font-size: 20px;
+  height: 30px;
 }

@@ -21,41 +21,30 @@
                 <h3>Dashboard</h3>
             </div>
 
-            <ul class="list-unstyled components">
-                <p style="text-align: center;font-weight:bold">Fields</p>
-                <li class="" id ="cfferw">
-                    <a href="#" name="erw" id="hom" >Home</a>
-                </li>
+            <div class="list-group lg" id="list-tab" role="tablist">
 
-             <% person.arr.forEach(function(object){  %>
-                <li>
-                  <a href="#<%=object.title%>" class='cff' id="cff<%=object.title%>"><%=object.title%></a>
-                </li>
-                <%});%>
-                <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Add Fields</a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
+              <p style="text-align: center;font-weight:bold;color:white;">Fields</p>
+
+              <a class="list-group-item list-group-item-action das active show" data-toggle="list" href="#home" role="tab" >Home</a>
+
+            <% person.arr.forEach(function(object){  %>
+            <a class="list-group-item list-group-item-action  das" data-toggle="list" href="#<%=object.title%>" role="tab" ><%=object.title%></a>
+            <%});%>
+            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" style="line-height:50px;text-align: center;" class="dropdown-toggle">Add Fields</a>
+                <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
                           <form  action="/addField" method="post">
                             <input type="hidden" name="id" value="<%=person.id%>">
                             <input type="text" class="rt" name="fieldname" value="" placeholder="Enter Field Name">
                             <button type="submit" class="eer" name="button"> + </button>
                           </form>
-
                         </li>
-
-                    </ul>
-                </li>
-                <li>
-
-                    <a href="#" name="archives" id="arc" >Archieves</a>
-                </li>
-            </ul>
-
-
+                </ul>
+              <a class="list-group-item list-group-item-action das"  data-toggle="list" href="#archives" role="tab" >Archives</a>
+           </div>
         </nav>
 
-        <!-- Page Content Holder -->
+
         <div id="content">
 
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -80,143 +69,142 @@
                     </div>
                 </div>
             </nav>
-            <% var i= 0;%>
 
-             <% person.arr.forEach(function(object){  %>
-            <div class="task-div" id="<%=object.title%>">
-              <div class="box" id="heading">
-                  <h1><%=object.title%></h1>
-                  <form class="clear"action="/clear" method="post">
-                    <input type="hidden" name="id" value="<%=person.id%>">
-                    <input type="hidden" name="taskName" value="<%=object.title%>">
-                    <button class="dust"type="submit" name="button"> <i class="fas fa-trash" ></i></button>
+            <div class="tab-content" id="nav-tabContent">
 
-                  </form>
+              <div class="tab-pane fade active show" id="home" role="tabpanel" >
+                <div class="box" id="heading">
+                    <h1>Welcome</h1>
+                </div>
+                <div class="box" style="display:flex;">
+                  <img src="/img/im.png" style="height:400px; display:inline-block" alt="">
+                 <p style="display:inline-block">Hello <%=person.name%>, I am Lana ,your To do manager. You can tell me various fields and task to me . I will keep a record of it.
+                     I will make sure you Complete your task with in time.
+                  </p>
+                </div>
 
               </div>
-              <div class="form">
-                  <form id ="filter<%=object.title%>" class="ieem">
-                    <input type="text" class="adT"  name="searchbar" value="" oninput="fund(<%=object.title%>)" placeholder="Search">
-                    <input type="hidden" name="taskName" value="<%=object.title%>">
-                  </form>
-             </div>
 
-              <div class="box tyy">
-                <table>
-                <tr>
-                   <th>Task Name</th>
-                  <th>Due Date</th>
-                  <th>Status</th>
-                  <th>Action</th>
-                </tr>
-                <%object.task.forEach(function(tak){  %>
-                    <tr class= " trr op<%=object.title%>">
-                        <form id='<%=object.title%><%=tak.val%>' class= "item"  action="/delete" method="post">
-                          <input type="hidden" name="task" value="<%=tak.val%>">
-                            <input type="hidden" name="id" value="<%=person.id%>">
-                            <input type="hidden" name="taskName" value="<%=object.title%>">
-                            <input type="hidden" name="duedate" value="<%=tak.due%>">
-                             <td><input type="checkbox" name="<%=object.title%><%=tak.val%>" value="<%=i%>" onchange="pla(this)"><p style="display:inline-block;"><%=tak.val%> </p></td>
-                             <td class="yop"><span class="btn btn-danger" style="border-radius:15px; margin-right:10px;"><%=tak.due%></span></td>
-                             <td class="yop">
-                               <% if(tak.status == 0){%>
-                               <span class="btn btn-warning"style="border-radius:15px; font-size:10px; ">pending</span>
-                             <%}else{%>
-                             <span class="btn btn-info"style="border-radius:15px; font-size:10px;">processing...</span><%}%>
-                           </td>
-                            <td class="yop">
-                               <% if(tak.status == 1){%>
-                              <button type="button" onclick="play(<%=object.title%><%=tak.val%>)" class="btn-success"name="button" style="border-radius:15px; font-size:15px;">Complete</button>
-                              <%}%>
-                            </td>
-
+              <% var i= 0;%>
+              <% person.arr.forEach(function(object){  %>
+                 <div class="tab-pane fade" id="<%=object.title%>" role="tabpanel" >
+                   <div class="box" id="heading">
+                       <h1><%=object.title%></h1>
+                       <form class="clear"action="/clear" method="post">
+                         <input type="hidden" name="id" value="<%=person.id%>">
+                         <input type="hidden" name="taskName" value="<%=object.title%>">
+                         <button class="dust"type="submit" name="button"> <i class="fas fa-trash" ></i></button>
                         </form>
+                    </div>
+                   <div class="form">
+                        <form id ="filter<%=object.title%>" class="ieem">
+                          <input type="text" class="adT"  name="searchbar" value="" oninput="fund(<%=object.title%>)" placeholder="Search">
+                          <input type="hidden" name="taskName" value="<%=object.title%>">
+                        </form>
+                     </div>
+                   <div class="box tyy">
+                     <table>
+                       <tr>
+                          <th>Task Name</th>
+                          <th>Due Date</th>
+                          <th>Status</th>
+                          <th>Action</th>
+                       </tr>
+                       <%object.task.forEach(function(tak){  %>
+                           <tr class= " trr op<%=object.title%>">
+                               <form id='<%=object.title%><%=tak.val%>' class= "item"  action="/delete" method="post">
+                                   <input type="hidden" name="task" value="<%=tak.val%>">
+                                   <input type="hidden" name="id" value="<%=person.id%>">
+                                   <input type="hidden" name="taskName" value="<%=object.title%>">
+                                   <input type="hidden" name="duedate" value="<%=tak.due%>">
+                                    <td><input type="checkbox" name="<%=object.title%><%=tak.val%>" value="<%=i%>" onchange="pla(this)"><p style="display:inline-block;"><%=tak.val%> </p></td>
+                                    <td class="yop"><span class="btn btn-danger" style="border-radius:15px; margin-right:10px;"><%=tak.due%></span></td>
+                                    <td class="yop">
+                                      <% if(tak.status == 0){%>
+                                       <span class="btn btn-warning"style="border-radius:15px; font-size:10px; ">pending</span>
+                                      <%}else{%>
+                                       <span class="btn btn-info"style="border-radius:15px; font-size:10px;">processing...</span><%}%>
+                                    </td>
+                                    <td class="yop">
+                                      <% if(tak.status == 1){%>
+                                      <button type="button" onclick="play(<%=object.title%><%=tak.val%>)" class="btn-success"name="button" style="border-radius:15px; font-size:15px;">Complete</button>
+                                      <%}%>
+                                    </td>
+
+                               </form>
+                            </tr>
+                       <% i++ ;})%>
+                     </table>
+
+                         <form class="iem" action="/addtask" method="post">
+                             <input type="hidden" name="id" value="<%=person.id%>">
+                             <input type="hidden" name="taskName" value="<%=object.title%>">
+                             <input type="text" class="addT" name="newItem" placeholder="New Item" autocomplete="off">
+                             <br>
+                             <input type="date" id="da"   name="due" title="DeadLine">
+                             <button type="submit" class="buton" name="list">+</button>
+
+                         </form>
+                     </div>
+
+                 </div>
+
+
+              <%})%>
+
+              <div class="tab-pane fade" id="archives" role="tabpanel" >
+                <div class="box" id="heading">
+                    <h1>Archives</h1>
+                </div>
+                <div class="form">
+                    <form id ="searchA" class="ieem">
+                      <input type="text" class="adT" style="font-size:15px; height:50px;" name="searchbar" value="" oninput="fnd(this)" placeholder="Search By ">
+                      <select class="tyts" name="">
+                        <option value="0" selected>Title</option>
+                        <option value="1">Task Name</option>
+                        <option value="2">Due Date</option>
+                        <option value="3">Completion</option>
+                      </select>
+                    </form>
+                </div>
+                <div class="box tyy">
+                  <table>
+                    <tr>
+                      <th>Title Name</th>
+                      <th>Task Name</th>
+                      <th>Due Date</th>
+                      <th>Completion Date</th>
+                    </tr>
+                    <% person.archive.forEach(function(ob){  %>
+                     <tr class= "trr popo">
+                           <td class="yop"><%=ob.title%></td>
+                           <td class="yop"><%=ob.task%></span>
+                           <td class="yop"><%=ob.due%></td>
+                           <td class="yop"><%=ob.comp%></span>
                      </tr>
-                <% i++ ;})%>
-           </table>
-
-                  <form class="iem" action="/addtask" method="post">
-                      <input type="hidden" name="id" value="<%=person.id%>">
-                      <input type="hidden" name="taskName" value="<%=object.title%>">
-                      <input type="text" class="addT" name="newItem" placeholder="New Item" autocomplete="off">
-                      <br>
-                      <input type="date" id="da"   name="due" title="DeadLine">
-                      <button type="submit" class="buton" name="list">+</button>
-
-                  </form>
+                    <%})%>
+                  </table>
+                </div>
               </div>
-           </div>
-           <%})%>
 
 
-           <div class="task-div" style="margin-left:270px;"  id="archives">
-             <div class="box" id="heading">
-                 <h1>Archives</h1>
              </div>
-             <div class="form">
-                 <form id ="searchA" class="ieem">
-                   <input type="text" class="adT" style="font-size:15px; height:50px;" name="searchbar" value="" oninput="fnd(this)" placeholder="Search By ">
-                   <select class="form-control" name="" >
-                     <option value="0">Title</option>
-                     <option value="1">Task Name</option>
-                     <option value="2">Due Date</option>
-                     <option value="3">Completion</option>
-                   </select>
-                 </form>
-            </div>
-             <div class="box tyy">
-               <table>
-               <tr>
-                  <th>Title Name</th>
-                 <th>Task Name</th>
-                 <th>Due Date</th>
-                <th>Completion Date</th>
-               </tr>
-                <% person.archive.forEach(function(ob){  %>
-            <tr class= "trr popo">
-                  <td class="yop"><%=ob.title%></td>
-                  <td class="yop"><%=ob.task%></span>
-                    <td class="yop"><%=ob.due%></td>
-                    <td class="yop"><%=ob.comp%></span>
-              </tr>
-             <%})%>
-             </table>
+            <div id="suc" style="position: absolute; top:40vh; right:0;display:none">
+              <div class="card" style="width:12rem; height:12rem">
+                <div class="card-body">
+                  <img class="card-img-top" style="height:60px;width: 100px;;"src="/img/good.png" alt="Card image cap">
+                  <h5 class="card-title" style="font-size:1rem; font-weight:600;color:black; margin:0;padding:3px;">Good Job</h5>
+                  <p class="card-text" style="font-size:0.7rem; font-weight: 400; margin:0; padding: 3px;">You have successfully completed the task.You can check the details in archive</p>
+                </div>
+              </div>
              </div>
-          </div>
-
-        <div id="suc" style="position: absolute; top:40vh; right:0;display:none">
-          <div class="card" style="width:12rem; height:12rem">
-          <div class="card-body">
-            <img class="card-img-top" style="height:60px;width: 100px;;"src="/img/good.png" alt="Card image cap">
-            <h5 class="card-title" style="font-size:1rem; font-weight:600;color:black; margin:0;padding:3px;">Good Job</h5>
-            <p class="card-text" style="font-size:0.7rem; font-weight: 400; margin:0; padding: 3px;">You have successfully completed the task.You can check the details in archive</p>
-          </div>
-        </div>
-        </div>
-
-          <div class="task-div" style="margin-left:270px;"  id="erw">
-            <div class="box" id="heading">
-                <h1>Welcome</h1>
-            </div>
-            <div class="box" style="display:flex;">
-              <img src="/img/im.png" style="height:400px; display:inline-block" alt="">
-             <p style="display:inline-block">Hello <%=person.name%>, I am Lana ,your To do manager. You can tell me various fields and task to me . I will keep a record of it.
-                 I will make sure you Complete your task with in time.
-              </p>
-            </div>
-         </div>
-
-
-
         </div>
     </div>
 
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <script src="/socket.io/socket.io.js" ></script>
     <script src="/js/ind.js" charset="utf-8"></script>
@@ -231,11 +219,6 @@
         });
 
     </script>
-
-
-
-
-
 </body>
 
 </html>

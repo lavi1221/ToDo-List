@@ -23,7 +23,8 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect("mongodb+srv://admin:test123@cluster0-6ef3z.mongodb.net/todoDB",{useUnifiedTopology: true,useNewUrlParser: true});
+//mongoose.connect("mongodb+srv://admin:test123@cluster0-6ef3z.mongodb.net/todoDB",{useUnifiedTopology: true,useNewUrlParser: true});
+mongoose.connect("mongodb://admin:test123@cluster0-shard-00-00-6ef3z.mongodb.net:27017,cluster0-shard-00-01-6ef3z.mongodb.net:27017,cluster0-shard-00-02-6ef3z.mongodb.net:27017/todoDB?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority",{useUnifiedTopology: true,useNewUrlParser: true});
 mongoose.set("useCreateIndex",true);
 
 const userSchema= new mongoose.Schema({
@@ -93,7 +94,6 @@ app.post('/addField',function(req,res){
     }
    });
 });
-var act="erw";
 app.post('/addtask',function(req,res){
   User.findById(req.body.id,function(err,foundUser){
   if(err){
@@ -111,7 +111,6 @@ app.post('/addtask',function(req,res){
                 tk[i].task.push(temp);
                 foundUser.markModified("arr");
                 foundUser.save();
-                act = req.body.taskName;
                 res.redirect('/dash');
             }
         }
@@ -134,7 +133,7 @@ app.post("/delete",function(req,res){
                     break;
                   }
                 }
-                console.log(req.body.task);
+                
                 tk[i].task.splice(k,1);
                 var day =  new Date().toISOString().split("T")[0];
                 var trer = {
@@ -144,13 +143,9 @@ app.post("/delete",function(req,res){
                   comp:day
                 };
                 foundUser.archive.push(trer);
-                //tk[i].task.forEach(function(t){
-                  //console.log(t.val+" "+t.due);
-                //});
                 foundUser.markModified("arr");
                 foundUser.markModified("archive");
                 foundUser.save();
-                act = req.body.taskName;
                 res.redirect('/dash');
             }
         }
@@ -175,7 +170,6 @@ app.post("/clear",function(req,res){
         foundUser.arr.splice(m,1);
         foundUser.markModified("arr");
         foundUser.save();
-        act = req.body.taskName;
         res.redirect('/dash');
       }
     }
@@ -183,7 +177,6 @@ app.post("/clear",function(req,res){
 });
 
 io.on("connection",function(socket){
-  io.emit('active',act);
 
   socket.on('check',function(data){
     User.findById(data.personid,function(err,foundUser){
@@ -195,10 +188,9 @@ io.on("connection",function(socket){
           for (var i = 0; i < tk.length; i++){
               if (tk[i].title == data.titlename){
                   var tt = tk[i].task;
-                  console.log(tk[i].title);
+
                   for(var k =0;k<tt.length;k++){
                     if(tt[k].val == data.task){
-                      console.log(tt[k].val);
                       break;
                     }
                   }
