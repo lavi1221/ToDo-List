@@ -106,6 +106,7 @@ app.post('/addtask',function(req,res){
                 var temp ={
                   val:req.body.newItem.trim(),
                   due:req.body.due,
+                  des:req.body.des,
                   status:0
                 }
                 tk[i].task.push(temp);
@@ -133,13 +134,14 @@ app.post("/delete",function(req,res){
                     break;
                   }
                 }
-                
+
                 tk[i].task.splice(k,1);
                 var day =  new Date().toISOString().split("T")[0];
                 var trer = {
                   title:req.body.taskName,
                   task:req.body.task,
                   due:req.body.duedate,
+                  des:req.body.desq,
                   comp:day
                 };
                 foundUser.archive.push(trer);

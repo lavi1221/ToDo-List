@@ -109,6 +109,7 @@
                           <th>Due Date</th>
                           <th>Status</th>
                           <th>Action</th>
+                          <th>Description</th>
                        </tr>
                        <%object.task.forEach(function(tak){  %>
                            <tr class= " trr op<%=object.title%>">
@@ -117,6 +118,8 @@
                                    <input type="hidden" name="id" value="<%=person.id%>">
                                    <input type="hidden" name="taskName" value="<%=object.title%>">
                                    <input type="hidden" name="duedate" value="<%=tak.due%>">
+                                   <input type="hidden" name="desq" value="<%=tak.des%>">
+
                                     <td><input type="checkbox" name="<%=object.title%><%=tak.val%>" value="<%=i%>" onchange="pla(this)"><p style="display:inline-block;"><%=tak.val%> </p></td>
                                     <td class="yop"><span class="btn btn-danger" style="border-radius:15px; margin-right:10px;"><%=tak.due%></span></td>
                                     <td class="yop">
@@ -130,7 +133,14 @@
                                       <button type="button" onclick="play(<%=object.title%><%=tak.val%>)" class="btn-success"name="button" style="border-radius:15px; font-size:15px;">Complete</button>
                                       <%}%>
                                     </td>
-
+                                    <td>
+                                      <a href="#dess" data-toggle="collapse" aria-expanded="false" style="padding-left:70px;" class="dropdown-toggle"><i class="fas fa-chevron-circle-down" style="color:#5526a8"></i></a>
+                                          <ul class="collapse list-unstyled" id="dess">
+                                                  <li>
+                                                   <p style="font-size:10px;font-weight:bold;"><%=tak.des%></p>
+                                                  </li>
+                                          </ul>
+                                    </td>
                                </form>
                             </tr>
                        <% i++ ;})%>
@@ -139,9 +149,10 @@
                          <form class="iem" action="/addtask" method="post">
                              <input type="hidden" name="id" value="<%=person.id%>">
                              <input type="hidden" name="taskName" value="<%=object.title%>">
-                             <input type="text" class="addT" name="newItem" placeholder="New Item" autocomplete="off">
-                             <br>
-                             <input type="date" id="da"   name="due" title="DeadLine">
+                             <input type="text" class="addT" name="newItem" placeholder="New Task" autocomplete="off">
+
+                             <input type="date" id="da"  style="margin:2% ;" name="due" title="DeadLine">
+                             <textarea name="des" class="form-control" style="margin:2% ;width:700px" rows="3" cols="30" placeholder="Enter Description Here"></textarea>
                              <button type="submit" class="buton" name="list">+</button>
 
                          </form>
@@ -178,7 +189,7 @@
                     <% person.archive.forEach(function(ob){  %>
                      <tr class= "trr popo">
                            <td class="yop"><%=ob.title%></td>
-                           <td class="yop"><%=ob.task%></span>
+                           <td class="yop" title="<%=ob.des%>" ><%=ob.task%></span>
                            <td class="yop"><%=ob.due%></td>
                            <td class="yop"><%=ob.comp%></span>
                      </tr>

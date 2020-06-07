@@ -7,8 +7,8 @@ h1 {
   display: inline-block;
 }
   .box {
-    max-width: 700px;
-    margin: 50px auto;
+    max-width: 800px;
+    margin: 30px auto;
     background: white;
     border-radius: 5px;
     box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
@@ -155,7 +155,7 @@ th{
   border: none;
   font-size: 20px;
   font-weight: 600;
-  width:180px;
+  width:200px;
   color:white;
   position: -webkit-sticky;
   position: sticky;
@@ -163,6 +163,7 @@ th{
   z-index:1;
   background:#5526a8;
 }
+
 .yop{
   text-align: center;
   padding: 1%;
@@ -190,14 +191,14 @@ th{
   font-size: 15px;
   font-weight: 400;
   padding: 2%;
-  width: 700px;
+  width: 800px;
   margin: auto;
   height: 20px;
   display: block;
 }
 .tyts{
   display: block;
-  width: 700px;
+  width: 800px;
   text-align: center;
   border: none;
   margin: auto;
